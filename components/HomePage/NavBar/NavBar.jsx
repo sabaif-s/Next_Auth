@@ -4,11 +4,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import data from "./Data.json";
 import Image from "next/image";
 const NextImage = Image;
-const NavBar = ({width}) => {
+const NavBar = React.memo(({heightNav}) => {
   const canvasRef = useRef(null);
   const [showKey, setShowKey] = useState(false);
   const [clickedAnchor, setClickedAnchor] = useState(null);
-  console.log("width navbar:",width);
+  const navRef=useRef(null);
+   
   useEffect(() => {
     const loadImagesAndCache = async () => {
       const canvas = canvasRef.current;
@@ -42,11 +43,21 @@ const NavBar = ({width}) => {
 
     loadImagesAndCache();
   }, []);
+  useEffect(()=>{
+      if(navRef.current){
+
+         console.log(typeof(heightNav));
+          console.log(navRef.current.clientHeight);
+          heightNav(navRef.current.clientHeight);
+      }
+  },[heightNav]);
 
   return (
     <nav 
+    ref={navRef}
       // style={{ width: `${width}px` }}
-    className="flex justify-between w-full items-center py-4 pl-4 xl:pl-0  xl:ml-32  border-2 border-gray-100 shadow-md shadow-gray-200 bg-gradient-to-r from-white via-gray-100 to-white">
+    className={data.navbar.navbarStyle}>
+      
       <div className="flex relative">
         <motion.canvas
           ref={canvasRef}
@@ -123,6 +134,6 @@ const NavBar = ({width}) => {
       </div>
     </nav>
   );
-};
+});
 
 export default NavBar;
