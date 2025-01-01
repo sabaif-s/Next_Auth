@@ -1,6 +1,7 @@
 
 import React,{useRef,useEffect,useState} from 'react';
 import { motion } from 'framer-motion';
+import MainRight from './MainRight';
  
 
 const Main= ({NavBarHeight}) => {
@@ -97,53 +98,97 @@ const Main= ({NavBarHeight}) => {
         </span>
     </motion.div>
 </div>
-<div className='flex flex-col mt-10'>
-    <div className='mb-4 flex flex-row justify-between items-center'>
+<div className='flex flex-col mt-10 gap-y-4'>
+    <div className='mb-4 flex flex-row justify-start items-center'>
         <motion.button
         style={{paddingTop:"6px",paddingBottom:"6px"}}
             className='px-10 rounded-full bg-green-600 text-white  hover:bg-green-700'
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0, x: 100 , y:100, rotate:-45 }}
+            animate={{ opacity: 1, x: 0 , y:0, rotate: 0}}
+            transition={{ duration: 2.5 }}
         >
             Read More
         </motion.button>
         <motion.div
-            className='p-4 bg-green-200 rounded'
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            className='gap-x-4  rounded flex flex-row items-center justify-start ml-10'
+            initial={{ opacity: 0, x: -20 , y:50, rotate:45 }}
+            animate={{ opacity: 1, x: 0 , y:0, rotate: 0}}
+            transition={{ duration: 1.5 }}
         >
-            Content Here
+             <img src="/mainHome/meta.png" className='w-8 h-8 object-cover' alt="" />
+            <span className='text-sm tracking-wider text-gray-500 font-normal'> +251701479847</span>
         </motion.div>
     </div>
     <div className='mb-4 flex flex-row justify-end w-full items-center pr-6'>
-         <div className='w-1/2 bg-orange-300 h-1' >
+         <div className='w-64 bg-orange-300 h-1' >
 
          </div>
     </div>
-    <div className='flex space-x-4'>
+    <div className='flex relative '>
         <motion.button
-            className='px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700'
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+        style={{paddingTop:"6px",paddingBottom:"6px"}}
+            className='px-10  rounded-full bg-green-600  text-white hover:bg-green-700 relative z-50'
+            initial={{ opacity: 0, x: -200, y:20 }}
+            animate={{ opacity: 1, x: 0,y:0 }}
+            transition={{ duration: 1.5 }}
         >
-            Button 1
+            Find a Psychologist
         </motion.button>
+        <div className='flex flex-row justify-start items-center absolute left-48' >
+
+       
         <motion.button
-            className='px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-700'
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+        style={{paddingTop:"6px",paddingBottom:"6px"}}
+            className='px-10  rounded-full bg-white  text-white hover:bg-gray-200 '
+            initial={{ opacity: 0, x: -200 ,y:-100 }}
+            animate={{ opacity: 1, x: 0 , y:0}}
+            transition={{ duration: 2.5 }}
         >
-            Button 2
+            <span className='text-gray-400' >
+            City Or Postcode...
+            </span>
+            
         </motion.button>
+         
+        <motion.img
+    src="/mainHome/search.png"
+    className='w-10 h-10 object-cover'
+    alt=""
+    initial={{ opacity: 0, scale: 0.5, rotate: -45 }}
+    animate={{ opacity: 1, scale: 1, rotate: 0 }}
+    transition={{ duration: 1, ease: "easeOut" }}
+    whileHover={{ scale: 1.1, rotate: 10 }}
+    whileTap={{ scale: 0.9, rotate: -10 }}
+/>
+         
+       
+        </div>
     </div>
+    <motion.div
+            ref={ref}
+            className='flex flex-row mt-4 pt-8 justify-start items-center relative'
+            initial={{ opacity: 0, y: 100 , x:-100, rotate:-45}}
+            animate={isInView ? { opacity: 1, x:0, y: 0 , rotate:0} : {}}
+            transition={{ duration: 1.5 }}
+        >    
+            <div className='flex flex-col w-4 h-4 justify-center items-center relative' >
+                <img className='rounded-full w-4 h-4 absolute bottom-8 -left-8 z-50' src="/mainHome/icon7.png" alt="Next 4" />
+               
+             </div>
+             <div className='absolute flex gap-x-4 -left-8' >
+
+             
+            <img className='rounded-full h-4 w-4' src="/mainHome/icon1.png" alt="Next 1" />
+            <img className='rounded-full h-4 w-4' src="/mainHome/icon2.png" alt="Next 2" />
+            <img className='rounded-full w-4 h-4' src="/mainHome/icon6.png" alt="Next 3" />
+            <img className='rounded-full w-4 h-4' src="/mainHome/icon4.png" alt="Next 4" />
+            </div>
+            
+        </motion.div>
 </div>
                 </div>
                 <div style={{width:`${rightWidth}px`}} className="bg-red-200 bg-opacity-40">
-                Right
+                 <MainRight/>
                 </div>
                 </>
                
