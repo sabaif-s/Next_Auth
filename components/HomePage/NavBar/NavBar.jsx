@@ -1,141 +1,128 @@
 "use client";
-import React, { useEffect, useRef,useState } from 'react';
-import { motion,AnimatePresence } from 'framer-motion';
-import mindImage from '@/components/HomePage/assets/mind.png';
-import keyImage from '@/components/HomePage/assets/key.png';
-import geometry from '@/components/HomePage/assets/geometry.png';
+import React, { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import data from "./Data.json";
+import Image from "next/image";
+const NextImage = Image;
+const NavBar = ({width}) => {
+  const canvasRef = useRef(null);
+  const [showKey, setShowKey] = useState(false);
+  const [clickedAnchor, setClickedAnchor] = useState(null);
+  console.log("width navbar:",width);
+  useEffect(() => {
+    const loadImagesAndCache = async () => {
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext("2d");
 
-const NavBar = () => {
-    const canvasRef = useRef(null);
-    const canvasRef2 = useRef(null);
-    const [showKey, setShowKey] = useState(false);
-    const [clickedAnchor,setClickedAnchor]=useState(null);
+      canvas.width = 100;
+      canvas.height = 100;
 
-    useEffect(() => {
-        const imageSources = [
-            mindImage.src,
-            keyImage.src,
-            geometry.src,
-        ];
-        const loadImagesAndCache = async () => {
-            const canvas = canvasRef.current;
-             
-            const ctx = canvas.getContext("2d");
-             
-            
-          
-            canvas.width = 100; // Adjust canvas dimensions
-            canvas.height = 100;
-             
+      const images = await Promise.all(
+        data.navbar.images.map(
+          (imgData) =>
+            new Promise((resolve, reject) => {
+              const img = new window.Image();
+              img.crossOrigin = "anonymous";
+              img.src = imgData.src;
+              img.onload = () => resolve(img);
+              img.onerror = (err) => reject(err);
+            })
+        )
+      );
 
-            // Load all images
-            const images = await Promise.all(
-                imageSources.map(
-                    (src) =>
-                        new Promise((resolve, reject) => {
-                            const img = new Image();
-                            img.crossOrigin = "anonymous"; // To handle cross-origin images
-                            img.src = src;
-                            img.onload = () => resolve(img);
-                            img.onerror = (err) => reject(err);
-                        })
-                )
-            );
-            ctx.drawImage(images[0], 0, 0, 100, 100);
-            setTimeout(() => {
-                 
+      // Draw the first image onto the canvas as an example
+      if (images[0]) {
+        ctx.drawImage(images[0], 0, 0, 100, 100);
+      }
 
-                // Save the current state
-                 
+      setTimeout(() => {
+        setShowKey(true);
+      }, 1000);
+    };
 
-                // Draw the image
-                // Adjust coordinates to center the image
-                 setShowKey(true);
+    loadImagesAndCache();
+  }, []);
 
-                // Restore the canvas state
-                 
-
-            }, 1000);
-        };
-
-        loadImagesAndCache();
-    }, []);
-
-    return (
-        <nav className="flex justify-between items-center py-4 ml-40 border-2 border-gray-100 shadow-md shadow-gray-200 bg-white">
-            <div className="flex  relative">
-                <motion.canvas
-                    ref={canvasRef}
-                    className="mr-2 "
-                    initial={{ opacity: 0}}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 2 }}
-                     
-                ></motion.canvas>
-                <AnimatePresence>
-            {showKey && (
-               <motion.img
-               src={keyImage.src}
-               className='w-10 h-10 absolute top-0'
-               style={{ left: "30px" }}
-               initial={{ opacity: 0, y: -50, rotate: 0 }}
-               animate={{ opacity: 1, y: 0, rotate: -45 }}
-               exit={{ opacity: 0, y: -50, rotate: 0 }}
-               transition={{ duration: 0.5 }}
-           />
-            )}
-        </AnimatePresence>
-                 <div className='flex flex-col relative justify-center' style={{width:"200px"}} >
-                        <span className='text-black text-2xl' style={{marginBottom:"2px"}} >
-                          Mindful
-                        </span>
-                        <span className='text-gray-400' >
-                          Psychological Therapy
-                        </span>
-                 </div>
-            </div>
-            <div className="flex w-full justify-end text-gray-400 items-center gap-x-10 " style={{paddingRight:"140px"}}>
-            <a
-                onClick={()=>setClickedAnchor('home')}
-                href="#home" className="hover:text-green-400">
-                  <span className={ clickedAnchor == "home" ? "text-green-400":""} >Home</span>
-                  </a>
-                  <a
-                onClick={()=>setClickedAnchor('about')}
-                href="#about" className="hover:text-green-400">
-                  <span className={ clickedAnchor == "about" ? "text-green-400":""} >About</span>
-                  </a>
-                
-                  <a
-                onClick={()=>setClickedAnchor('services')}
-                href="#services" className="hover:text-green-400">
-                  <span className={ clickedAnchor == "services" ? "text-green-400":""} >Services</span>
-                  </a>
-                  <a
-                onClick={()=>setClickedAnchor('portfolio')}
-                href="#portfolio" className="hover:text-green-400">
-                  <span className={ clickedAnchor == "portfolio" ? "text-green-400":""} >Portfolio</span>
-                  </a>
-                  <a
-                                      
-                onClick={()=>setClickedAnchor('contact')}
-                href="#contact" className="hover:text-green-400">
-                  <span className={ clickedAnchor == "contact" ? "text-green-400":""} >Contact</span>
-                  </a>
-                <motion.button
-    className="border border-green-500 p-4 shadow-md shadow-green-400 hover:bg-gradient-to-r hover:from-red-100 hover:to-blue-300 hover:bg-white hover:text-gray-800"
-    style={{ borderRadius: "20px" }}
-    initial={{ opacity: 0, y: -50, x:-100, rotate: -45 }}
-    animate={{ opacity: 1, y: 0, x:0, rotate: 0 }}
-    transition={{ duration: 1 }}
-    whileHover={{ scale: 1.1, backgroundColor: "#f0f0f0", color: "#333" }}
-    whileTap={{ scale: 0.9 }}
->
-    Contact Us
-</motion.button>
-            </div>
-        </nav>
-    );
+  return (
+    <nav 
+      // style={{ width: `${width}px` }}
+    className="flex justify-between w-full items-center py-4 pl-4 xl:pl-0  xl:ml-32  border-2 border-gray-100 shadow-md shadow-gray-200 bg-gradient-to-r from-white via-gray-100 to-white">
+      <div className="flex relative">
+        <motion.canvas
+          ref={canvasRef}
+          className="mr-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 2, ease: "easeInOut" }}
+        ></motion.canvas>
+        <AnimatePresence>
+  {showKey && (
+    <motion.div
+      className="absolute"
+      style={data.navbar.images[1].style}
+      initial={{ opacity: 0, y: -50, rotate: 0 }}
+      animate={{ opacity: 1, y: 0, rotate: -45 }}
+      exit={{ opacity: 0, y: -50, rotate: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+    >
+      <NextImage
+        src={data.navbar.images[1].src} // Path from your `data.json`
+        alt={data.navbar.images[1].alt} // Alt text from your `data.json`
+        width={50} // Replace with the actual width of the image
+        height={50} // Replace with the actual height of the image
+        className="object-contain" // Optional: Tailwind class for styling
+        priority={true} // Ensures it loads quickly if needed immediately
+      />
+    </motion.div>
+  )}
+</AnimatePresence>
+        <div
+          className="flex flex-col relative justify-center "
+          style={{ width: "200px" }}
+        >
+          <span className="text-black text-2xl mb-2">{data.navbar.logo.title}</span>
+          <span className="text-gray-400">{data.navbar.logo.subtitle}</span>
+        </div>
+      </div>
+      <div
+        className="flex w-full xl:ml-32 pl-20 justify-start pr-4 xl:pr-0 text-gray-400 items-center gap-x-8 xl:gap-x-10 xl:pl-40 xl:pl-4"
+        
+      >
+        {data.navbar.links.map((link) => (
+          <motion.a
+            key={link.label}
+            onClick={() => setClickedAnchor(link.href)}
+            href={link.href}
+            className={`hover:text-green-400 transition-colors duration-300 ${
+              clickedAnchor === link.href ? "text-green-400" : ""
+            }`}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 * Math.random(), duration: 1 }}
+            whileHover={{ scale: 1.1 }}
+          >
+            <span>{link.label}</span>
+          </motion.a>
+        ))}
+        <motion.button
+          className={data.navbar.button.style}
+          style={{ borderRadius: "20px" }}
+          initial={{ opacity: 0, y: -50, x: -100, rotate: -45 }}
+          animate={{ opacity: 1, y: 0, x: 0, rotate: 0 }}
+          transition={{ duration: 1, ease: "easeInOut" }}
+          whileHover={{
+            scale: 1.1,
+            backgroundColor: "#f0f0f0",
+            color: "#333",
+            boxShadow: "0px 5px 15px rgba(0, 128, 0, 0.5)",
+          }}
+          whileTap={{ scale: 0.9 }}
+        >
+          {data.navbar.button.text}
+        </motion.button>
+      </div>
+    </nav>
+  );
 };
 
 export default NavBar;

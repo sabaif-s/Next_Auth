@@ -1,0 +1,37 @@
+{
+    "navbar": {
+      "logo": {
+        "title": "Mindful",
+        "subtitle": "Psychological Therapy"
+      },
+      "links": [
+        { "label": "Home", "href": "#home" },
+        { "label": "About", "href": "#about" },
+        { "label": "Services", "href": "#services" },
+        { "label": "Portfolio", "href": "#portfolio" },
+        { "label": "Contact", "href": "#contact" }
+      ],
+      "button": {
+        "text": "Contact Us",
+        "style": "border border-green-500  px-6 py-2 shadow-md shadow-green-400 hover:bg-gradient-to-r from-red-100 to-blue-300 hover:text-gray-800"
+      },
+      "images": [
+        {
+          "src": "/navBarImage/mind.png",
+          "alt": "Mindful Logo",
+          "style": { "width": "100px", "height": "100px" }
+        },
+        {
+          "src": "/navBarImage/key.png",
+          "alt": "Key Image",
+          "style": { "width": "50px", "height": "50px", "position": "absolute", "left": "30px" }
+        },
+        {
+          "src": "/navBarImage/geometry.png",
+          "alt": "Geometry Background",
+          "style": { "width": "200px", "height": "200px" }
+        }
+      ]
+    }
+  }
+  
