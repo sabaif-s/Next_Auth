@@ -1,0 +1,15 @@
+{
+    "images":[
+        {
+            "mainImage":{
+                "src":"/mainHome/saboo11.png",
+                "alt":"Main Image"
+
+            },
+            "imageKey":{
+                "src":"/mainHome/key.png",
+                "alt":"Key Image"
+            }
+        }
+    ]
+}
