@@ -2,8 +2,7 @@
 import React,{useRef,useEffect,useState} from 'react';
 import { motion } from 'framer-motion';
 import MainRight from './MainRight';
- 
-
+import data from "./Data.json";
 const Main= ({NavBarHeight}) => {
     const containerRef=useRef(null);
     const ref = useRef(null);
@@ -19,7 +18,7 @@ const Main= ({NavBarHeight}) => {
             },
         }),
     };
-    const text = "The Peace You Need Starts Deep In Your Mind.";
+    const text = data.leftData.content;
      useEffect(()=>{
       if(containerRef.current){
           setLeftWidth(containerRef.current.clientWidth/2 + 9);
@@ -94,11 +93,11 @@ const Main= ({NavBarHeight}) => {
         className='pr-4 bg-gray-100 bg-opacity-20'
     >
         <span className='text-sm text-gray-500 font-normal'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            {data.leftData.smallContent}
         </span>
     </motion.div>
 </div>
-<div className='flex flex-col mt-10 gap-y-4'>
+<div className='flex flex-col 2xl:mt-10 xl:mt-4 gap-y-4'>
     <div className='mb-4 flex flex-row justify-start items-center'>
         <motion.button
         style={{paddingTop:"6px",paddingBottom:"6px"}}
@@ -187,7 +186,7 @@ const Main= ({NavBarHeight}) => {
         </motion.div>
 </div>
                 </div>
-                <div style={{width:`${rightWidth}px`}} className="bg-red-200 bg-opacity-40">
+                <div style={{width:`${rightWidth}px`}} className="bg-red-200 bg-opacity-40 relative z-40">
                  <MainRight/>
                 </div>
                 </>

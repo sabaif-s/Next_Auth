@@ -58,7 +58,7 @@ const NavBar = React.memo(({heightNav}) => {
       // style={{ width: `${width}px` }}
     className={data.navbar.navbarStyle}>
       
-      <div className="flex relative">
+      <div className="flex relative z-50">
         <motion.canvas
           ref={canvasRef}
           className="mr-2"
@@ -96,7 +96,7 @@ const NavBar = React.memo(({heightNav}) => {
         </div>
       </div>
       <div
-        className="flex w-full xl:ml-32 pl-20 justify-start pr-4 xl:pr-0 text-gray-400 items-center gap-x-8 xl:gap-x-10 xl:pl-40 xl:pl-4"
+        className="flex w-full xl:ml-16 pl-20 justify-start pr-4 xl:pr-0 text-gray-400 items-center gap-x-8 xl:gap-x-10 xl:pl-40 xl:pl-4"
         
       >
         {data.navbar.links.map((link) => (
@@ -115,22 +115,23 @@ const NavBar = React.memo(({heightNav}) => {
             <span>{link.label}</span>
           </motion.a>
         ))}
-        <motion.button
-          className={data.navbar.button.style}
-          style={{ borderRadius: "20px" }}
-          initial={{ opacity: 0, y: -50, x: -100, rotate: -45 }}
-          animate={{ opacity: 1, y: 0, x: 0, rotate: 0 }}
-          transition={{ duration: 1, ease: "easeInOut" }}
-          whileHover={{
-            scale: 1.1,
-            backgroundColor: "#f0f0f0",
-            color: "#333",
-            boxShadow: "0px 5px 15px rgba(0, 128, 0, 0.5)",
-          }}
-          whileTap={{ scale: 0.9 }}
-        >
-          {data.navbar.button.text}
-        </motion.button>
+      <motion.button
+    className="bg-gradient-to-r hover:bg-gradient-to-l  from-sky-400 via-sky-300 to-red-400 text-white font-bold py-2 px-4 rounded-full shadow-lg"
+    style={{ borderRadius: "20px" }}
+    initial={{ opacity: 0, y: -50, x: -100, rotate: -45 }}
+    animate={{ opacity: 1, y: 0, x: 0, rotate: 0 }}
+    transition={{ duration: 1, ease: "easeInOut" }}
+    whileHover={{
+        scale: 1.1,
+        backgroundColor: "#f0f0f0",
+        color: "#f0f0f0",
+        boxShadow: "0px 5px 15px rgba(0, 128, 0, 0.5)",
+        transition: { duration: 0.3 },
+    }}
+    whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}
+>
+    {data.navbar.button.text}
+</motion.button>
       </div>
     </nav>
   );

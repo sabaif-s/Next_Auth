@@ -4,7 +4,7 @@
         "title": "Mindful",
         "subtitle": "Psychological Therapy"
       },
-      "navbarStyle": "flex justify-between w-full items-center py-4 pl-4 xl:pl-0  xl:ml-32  border-2 border-gray-100 shadow-md shadow-gray-200 bg-gradient-to-r from-white via-gray-100 to-white",
+      "navbarStyle": "flex justify-between w-full items-center py-4 pl-4 xl:pl-0  xl:ml-8  border-2 border-gray-100 shadow-md shadow-gray-200 bg-gradient-to-r from-white via-gray-100 to-white",
       "links": [
         { "label": "Home", "href": "#home" },
         { "label": "About", "href": "#about" },
@@ -14,7 +14,7 @@
       ],
       "button": {
         "text": "Contact Us",
-        "style": "border border-green-500  px-6 py-2 shadow-md shadow-green-400 hover:bg-gradient-to-r from-red-100 to-blue-300 hover:text-gray-800"
+        "style": "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
       },
 
       "images": [

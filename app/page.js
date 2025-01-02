@@ -35,7 +35,7 @@ export default function Home() {
 
   const { width, height } = dimensions;
   const heightNav= useCallback((data) => {
-    const mainHeight=window.innerHeight - 164 - data;
+    const mainHeight=window.innerHeight - 160 - data;
     console.log(mainHeight);
     console.log(dimensions);
             setHeightNavBar(mainHeight);
@@ -44,7 +44,7 @@ export default function Home() {
     <div key="top" className="w-full h-screen overflow-hidden bg-yellow-200 bg-opacity-60 xl:px-20 flex justify-center items-center">
       {width && height && (
         <div
-          className="bg-white w-full  overflow-x-hidden mx-auto "
+          className="bg-white w-full  overflow-hidden mx-auto "
           style={{  height: `${height}px` }}
         >
           {/* Passing a slightly reduced width to NavBar */}
