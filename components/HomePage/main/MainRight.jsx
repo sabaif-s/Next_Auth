@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import data from "./Data.json";
 
 const drawCurve = (ctx, startX, startY, cp1X, cp1Y, cp2X, cp2Y, endX, endY) => {
@@ -13,6 +13,7 @@ const drawCurve = (ctx, startX, startY, cp1X, cp1Y, cp2X, cp2Y, endX, endY) => {
 
 const MainRight = () => {
     const canvasRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
+    const [hideCanvas, setHideCanvas] = useState(false);
 
     useEffect(() => {
         canvasRefs.forEach((ref, index) => {
@@ -35,10 +36,17 @@ const MainRight = () => {
                     break;
             }
         });
+
+        // Set a timeout to hide the canvases after 5 seconds
+        const timeout = setTimeout(() => {
+            setHideCanvas(true);
+        }, 5000);
+
+        return () => clearTimeout(timeout);
     }, []);
 
     return (
-        <div className='w-full h-full flex items-center pr-20 justify-start relative'>
+        <div className='w-full h-full flex items-center pr-20 justify-start relative bg-opacity-30'>
             <motion.img
                 src={data.images[0].mainImage.src}
                 className='w-full max-h-full'
@@ -72,28 +80,27 @@ const MainRight = () => {
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 1, delay: 1 }}
                         />
-                         <motion.div
+                        <motion.div
                             className='w-6 h-6 rounded-full bg-pink-400 absolute top-20 right-20 z-50'
                             initial={{ opacity: 0, scale: 0 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 1, delay: 1 }}
                         />
-                         {Array.from({ length: 10 }, (_, i) => i * 10).map((i, index) => (
-    <motion.div
-        key={index}
-        className={`w-4 h-4 rounded-full absolute ${index % 2 === 0 ? "bg-gray-400" : "bg-green-400"} z-50`}
-        initial={{ opacity: 1, scale: 0,x:10,y:0 }}
-        animate={{ opacity: 0, scale: 1,x:-10, y:-10 }}
-        transition={{ duration: 2, delay: 4, repeat: 4, repeatType: "reverse" }}
-        style={{
-            right: index % 2 === 0 ? `${i}px` : "auto",
-            bottom: index % 2 === 0 ? `${i}px` : "auto",
-            left: index % 2 !== 0 ? `${i}px`: "auto",
-            top: index % 2 !== 0 ? `${i}px`: "auto",
-        }}
-    />
-))}
-                       
+                        {Array.from({ length: 10 }, (_, i) => i * 10).map((i, index) => (
+                            <motion.div
+                                key={index}
+                                className={`w-4 h-4 rounded-full absolute ${index % 2 === 0 ? "bg-gray-400" : "bg-green-400"} z-50`}
+                                initial={{ opacity: 1, scale: 0, x: 10, y: 0 }}
+                                animate={{ opacity: 0, scale: 1, x: -10, y: -10 }}
+                                transition={{ duration: 2, delay: 4, repeat: 4, repeatType: "reverse" }}
+                                style={{
+                                    right: index % 2 === 0 ? `${i}px` : "auto",
+                                    bottom: index % 2 === 0 ? `${i}px` : "auto",
+                                    left: index % 2 !== 0 ? `${i}px` : "auto",
+                                    top: index % 2 !== 0 ? `${i}px` : "auto",
+                                }}
+                            />
+                        ))}
                         <motion.div
                             className='w-4 h-4 rounded-full bg-sky-400 absolute bottom-20 right-40 z-50'
                             initial={{ opacity: 0, scale: 0 }}
@@ -107,38 +114,48 @@ const MainRight = () => {
                             animate={{ width: "12rem" }}
                             transition={{ duration: 1, delay: 1.5 }}
                         />
-                        <motion.div
-                            className='absolute top-0 left-0'
-                            initial={{ opacity: 0, x: -100, y: -100 }}
-                            animate={{ opacity: 1, x: 0, y: 0 }}
-                            transition={{ duration: 1, delay: 0.5 }}
-                        >
-                            <canvas ref={canvasRefs[0]} width={400} height={400} />
-                        </motion.div>
-                        <motion.div
-                            className='absolute top-0 left-0'
-                            initial={{ opacity: 0, x: -100, y: -100 }}
-                            animate={{ opacity: 1, x: 0, y: 0 }}
-                            transition={{ duration: 1, delay: 1 }}
-                        >
-                            <canvas ref={canvasRefs[1]} width={400} height={400} />
-                        </motion.div>
-                        <motion.div
-                            className='absolute top-0 left-0'
-                            initial={{ opacity: 0, x: -100, y: -100 }}
-                            animate={{ opacity: 1, x: 0, y: 0 }}
-                            transition={{ duration: 1, delay: 1.5 }}
-                        >
-                            <canvas ref={canvasRefs[2]} width={400} height={400} />
-                        </motion.div>
-                        <motion.div
-                            className='absolute top-0 left-0'
-                            initial={{ opacity: 0, x: -100, y: -100 }}
-                            animate={{ opacity: 1, x: 0, y: 0 }}
-                            transition={{ duration: 1, delay: 2 }}
-                        >
-                            <canvas ref={canvasRefs[3]} width={400} height={400} />
-                        </motion.div>
+                        <AnimatePresence>
+                            {!hideCanvas && (
+                                <>
+                                    <motion.div
+                                        className='absolute top-0 left-0'
+                                        initial={{ opacity: 0, x: -100, y: -100 }}
+                                        animate={{ opacity: 1, x: 0, y: 0 }}
+                                        exit={{ opacity: 0 }}
+                                        transition={{ duration: 1, delay: 0.5 }}
+                                    >
+                                        <canvas ref={canvasRefs[0]} width={400} height={400} />
+                                    </motion.div>
+                                    <motion.div
+                                        className='absolute top-0 left-0'
+                                        initial={{ opacity: 0, x: -100, y: -100 }}
+                                        animate={{ opacity: 1, x: 0, y: 0 }}
+                                        exit={{ opacity: 0 }}
+                                        transition={{ duration: 1, delay: 1 }}
+                                    >
+                                        <canvas ref={canvasRefs[1]} width={400} height={400} />
+                                    </motion.div>
+                                    <motion.div
+                                        className='absolute top-0 left-0'
+                                        initial={{ opacity: 0, x: -100, y: -100 }}
+                                        animate={{ opacity: 1, x: 0, y: 0 }}
+                                        exit={{ opacity: 0 }}
+                                        transition={{ duration: 1, delay: 1.5 }}
+                                    >
+                                        <canvas ref={canvasRefs[2]} width={400} height={400} />
+                                    </motion.div>
+                                    <motion.div
+                                        className='absolute top-0 left-0'
+                                        initial={{ opacity: 0, x: -100, y: -100 }}
+                                        animate={{ opacity: 1, x: 0, y: 0 }}
+                                        exit={{ opacity: 0 }}
+                                        transition={{ duration: 1, delay: 2 }}
+                                    >
+                                        <canvas ref={canvasRefs[3]} width={400} height={400} />
+                                    </motion.div>
+                                </>
+                            )}
+                        </AnimatePresence>
                     </div>
                 </div>
             </div>

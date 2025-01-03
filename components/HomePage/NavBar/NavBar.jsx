@@ -56,7 +56,7 @@ const NavBar = React.memo(({heightNav}) => {
     <nav 
     ref={navRef}
       // style={{ width: `${width}px` }}
-    className={data.navbar.navbarStyle}>
+    className={"flex justify-between w-full items-center py-4 pl-4 xl:pl-0  xl:ml-8  border-2 border-gray-100 shadow-md shadow-gray-200 bg-gradient-to-r from-white via-gray-100 to-white"}>
       
       <div className="flex relative z-50">
         <motion.canvas

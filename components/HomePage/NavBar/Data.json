@@ -4,7 +4,7 @@
         "title": "Mindful",
         "subtitle": "Psychological Therapy"
       },
-      "navbarStyle": "flex justify-between w-full items-center py-4 pl-4 xl:pl-0  xl:ml-8  border-2 border-gray-100 shadow-md shadow-gray-200 bg-gradient-to-r from-white via-gray-100 to-white",
+      "navbarStyle": "flex justify-between w-full items-center py-4 pl-4 xl:pl-0  xl:ml-8  border-2 border-gray-100 shadow-md shadow-gray-200 bg-gradient-to-r from-blue-300 via-gray-100 to-blue-100",
       "links": [
         { "label": "Home", "href": "#home" },
         { "label": "About", "href": "#about" },

@@ -70,7 +70,7 @@ const Main= ({NavBarHeight}) => {
              </div>
         </motion.div>
                  </div>
-                 <div className='pt-2 flex flex-row pl-2 w-full pr-10 bg-gray-100'>
+                 <div className='pt-2 flex flex-row pl-2 w-full pr-10 '>
     <motion.span
         className="text-black font-semibold w-full word-break font-serif "
         initial="hidden"
@@ -186,7 +186,7 @@ const Main= ({NavBarHeight}) => {
         </motion.div>
 </div>
                 </div>
-                <div style={{width:`${rightWidth}px`}} className="bg-red-200 bg-opacity-40 relative z-40">
+                <div style={{width:`${rightWidth}px`}} className=" bg-opacity-20 relative z-40">
                  <MainRight/>
                 </div>
                 </>
