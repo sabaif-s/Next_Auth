@@ -1,0 +1,23 @@
+{
+    "images":[
+        {
+            "mainImage":{
+                "src":"/mainHome/saboo11.png",
+                "alt":"Main Image"
+
+            },
+            "imageKey":{
+                "src":"/mainHome/key.png",
+                "alt":"Key Image"
+            }
+        }
+    ],
+    "leftData":{
+        "content":"The Peace You Need Starts Deep In Your Mind.",
+        "smallContent":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "firstButton":"Read More",
+        "secondButton":"Find a Psychologist",
+        "phoneNumber":"+251701479847",
+        "placeholder":"City or Postcode.."
+    }
+}

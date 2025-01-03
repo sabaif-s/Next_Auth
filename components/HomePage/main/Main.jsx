@@ -10,6 +10,7 @@ const Main= ({NavBarHeight}) => {
     const  [leftWidth,setLeftWidth]=useState(null);
     const [rightWidth,setRightWidth]=useState(null);
     const [readyRender,setReadyRender]=useState(false);
+    const [smallContent,setSmallContent]=useState(null);
     const typingVariants = {
         hidden: { opacity: 0 },
         visible: (i) => ({
@@ -38,6 +39,7 @@ const Main= ({NavBarHeight}) => {
          if(data?.leftData?.smallContent){
             console.log("Data:", data.leftData.smallContent);
             setReadyRender(true);
+            setSmallContent(data.leftData.smallContent);
 
          }
      },[]);
@@ -104,10 +106,18 @@ const Main= ({NavBarHeight}) => {
                 transition={{ duration: 2 }}
                 className='pr-4 bg-gray-100 bg-opacity-20'
             >
-                <span className='text-sm text-gray-500'>
-                
-                    {data.leftData.smallContent}
-                </span>
+                 
+                        {
+                            smallContent ? (
+                                <span className='text-sm text-gray-500'>
+                                        {smallContent.slice(0, 10) + "..."}
+                                     </span>
+                            ):(
+                                    null
+                            )
+                        }
+                    
+               
             </motion.div>
         </div>
         <div className='flex flex-col 2xl:mt-10 xl:mt-4 gap-y-4'>
