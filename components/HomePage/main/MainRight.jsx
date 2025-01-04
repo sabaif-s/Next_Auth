@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
 import data from "./Data.json";
 
 const drawCurve = (ctx, startX, startY, cp1X, cp1Y, cp2X, cp2Y, endX, endY) => {
@@ -13,13 +14,13 @@ const drawCurve = (ctx, startX, startY, cp1X, cp1Y, cp2X, cp2Y, endX, endY) => {
 
 const MainRight = () => {
     const canvasRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
-    const isFetched=useRef(false);
+    const isFetched = useRef(false);
     const [hideCanvas, setHideCanvas] = useState(false);
     const [imageLoaded, setImageLoaded] = useState(false);
     const widthRef = useRef(null);
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-    const [imageMain,setImageMain]=useState(null);
-    const [imageKeys,setImageKeys]=useState(null);
+    const [imageMain, setImageMain] = useState(null);
+    const [imageKeys, setImageKeys] = useState(null);
 
     useEffect(() => {
         if (widthRef.current) {
@@ -27,51 +28,52 @@ const MainRight = () => {
             setDimensions({ width: clientWidth, height: clientHeight });
         }
     }, []);
+
     useEffect(() => {
-        if (data?.images?.[0]?.mainImage?.src && data?.images?.[0]?.imageKey?.src && !imageLoaded && !isFetched.current ) {
-          console.log("Fetching Main Image");
-            isFetched.current=true;
-          fetch(data.images[0].mainImage.src)
-            .then((response) => {
-              if (!response.ok) {
-                throw new Error("Failed to fetch Main Image");
-              }
-              return response.blob();
-            })
-            .then((blob) => {
-              const blobSrc = URL.createObjectURL(blob);
-              setImageMain(blobSrc);
-      
-              const img2 = new Image();
-              img2.src = data.images[0].imageKey.src;
-      
-              img2.onload = () => {
-                console.log("Image Key Loaded");
-                setImageKeys(img2.src);
-                setImageLoaded(true);
-              };
-      
-              img2.onerror = () => {
-                console.error("Failed to load Image Key");
-                setImageLoaded(false); // Optionally set a fallback state
-              };
-            })
-            .catch((error) => {
-              console.error("Failed to fetch Main Image blob", error);
-            });
+        if (data?.images?.[0]?.mainImage?.src && data?.images?.[0]?.imageKey?.src && !imageLoaded && !isFetched.current) {
+            console.log("Fetching Main Image");
+            isFetched.current = true;
+            fetch(data.images[0].mainImage.src)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Failed to fetch Main Image");
+                    }
+                    return response.blob();
+                })
+                .then((blob) => {
+                    const file = new Blob([blob], { type: 'image/jpeg' });
+                     
+                    const blobSrc = URL.createObjectURL(blob);
+                    setImageMain(blobSrc);
+
+                    const img2 = new window.Image();
+                    img2.src = data.images[0].imageKey.src;
+
+                    img2.onload = () => {
+                        console.log("Image Key Loaded");
+                        setImageKeys(img2.src);
+                        setImageLoaded(true);
+                    };
+
+                    img2.onerror = () => {
+                        console.error("Failed to load Image Key");
+                        setImageLoaded(false); // Optionally set a fallback state
+                    };
+                })
+                .catch((error) => {
+                    console.error("Failed to fetch Main Image blob", error);
+                });
         }
-      
+
         return () => {
-          if (imageMain) {
-            URL.revokeObjectURL(imageMain);
-          }
-          if (imageKeys) {
-            URL.revokeObjectURL(imageKeys);
-          }
+            if (imageMain) {
+                URL.revokeObjectURL(imageMain);
+            }
+            if (imageKeys) {
+                URL.revokeObjectURL(imageKeys);
+            }
         };
-      }, [data]);
-      
-      
+    }, [data]);
 
     useEffect(() => {
         if (dimensions.width && dimensions.height && imageLoaded) {
@@ -105,45 +107,65 @@ const MainRight = () => {
 
             return () => clearTimeout(timeout);
         }
-    }, [dimensions,imageLoaded]);
+    }, [dimensions, imageLoaded]);
 
     return (
         <div
             ref={widthRef}
             className='w-full h-full flex items-center pr-20 justify-start relative bg-opacity-30'>
-            <AnimatePresence>
-                {imageLoaded && (
-                    <motion.img
-                        src={imageMain}
-                        className='w-full max-h-full'
-                        alt=""
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 2, delay: 2.5 }}
-                    />
-                )}
-            </AnimatePresence>
-            
+          <AnimatePresence>
+    {imageLoaded && (
+        <motion.div
+            className="w-full max-h-full relative" // Ensure the parent is relative for proper positioning
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 2, delay: 2.5 }}
+        >
+            <motion.img
+                src={imageMain}
+                alt="Main Image"
+                className="object-cover z-50 w-full h-full" // Ensuring the image covers the full container
+                 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 2,delay:2.5 }}
+            />
+        </motion.div>
+    )}
+</AnimatePresence>
+
             {imageLoaded && (
                 <div className='absolute inset-0 flex'>
                     <div className='w-full h-full relative'>
                         <div>
-                            <motion.img
-                                src={imageKeys}
+                            <motion.div
                                 className='w-20 rotate-[135deg] absolute z-50 bottom-6 -left-4'
-                                alt=""
                                 initial={{ opacity: 0, x: -50, y: 50 }}
                                 animate={{ opacity: 1, x: 0, y: 0, rotate: -45 }}
                                 transition={{ duration: 1, delay: 0.5 }}
-                            />
-                            <motion.img
-                                src={data.images[0].imageKey.src}
+                            >
+                                <Image
+                                    src={imageKeys}
+                                    alt=""
+                                    width={80}
+                                    height={80}
+                                    className='rounded-full'
+                                />
+                            </motion.div>
+                            <motion.div
                                 className='w-20 rotate-[135deg] absolute z-50 top-6 right-20'
-                                alt=""
                                 initial={{ opacity: 0, x: 50, y: -50 }}
                                 animate={{ opacity: 1, x: 0, y: 0, rotate: 135 }}
                                 transition={{ duration: 2, delay: 1.5 }}
-                            />
+                            >
+                                <Image
+                                    src={data.images[0].imageKey.src}
+                                    alt=""
+                                    width={80}
+                                    height={80}
+                                    className='rounded-full'
+                                />
+                            </motion.div>
                             <motion.div
                                 className='w-6 h-6 rounded-full bg-pink-400 absolute bottom-20 left-20 z-50'
                                 initial={{ opacity: 0, scale: 0 }}

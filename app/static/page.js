@@ -5,9 +5,8 @@ export default function StaticPage() {
      
   
   return (
-    <div>
-      <h1>Static Page with Data</h1>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </div>
+    <span className='text-sm text-gray-500'>
+    {data.leftData.smallContent}
+ </span>
   );
 }
