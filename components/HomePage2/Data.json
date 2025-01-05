@@ -1,6 +1,7 @@
 {
     "message": "This is static content loaded at build time",
     "agencyName": "Interior Design Agency",
+    "templateFirst":"https://www.freepik.com/free-vector/flat-interior-design-home-decor-landing-page-template_30835004.htm#fromView=search&page=1&position=24&uuid=465ed8e7-7899-4ea4-8602-6d40e9f3d98a&new_detail=true",
     "mainHeadline": "We create more",
     "secondaryHeadline": "than just Interior.",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
