@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect,useCallback } from "react";
 import dynamic from 'next/dynamic';
+import HomePage from "@/components/HomePage2/HomePage";
 const NavBar = dynamic(() => import('@/components/HomePage/NavBar/NavBar'), {
   ssr: false, // Disable SSR for this component
 });
@@ -62,21 +63,35 @@ export default function Home() {
             setHeightNavBar(mainHeight2);
   }, []);
   return (
-    <div key="top" className="w-full h-screen overflow-hidden bg-yellow-200 bg-opacity-60 xl:px-20 flex justify-center items-center">
-      {width && height && (
-        <div
-          className="bg-white w-full  overflow-hidden mx-auto "
-          style={{  height: `${height}px` }}
-        >
-          {/* Passing a slightly reduced width to NavBar */}
-          <NavBar key={"nav"} heightNav={heightNav}  />
-          {
-            NavBarHeight != 0 && (
-              <Main key={"main"} NavBarHeight={NavBarHeight} />
-            )
-          }
-        </div>
-      )}
-    </div>
+    <>
+    
+    {
+      false && (
+        <div key="top" className="w-full h-screen overflow-hidden bg-yellow-200 bg-opacity-60 xl:px-20 flex justify-center items-center">
+        {width && height && (
+          <div
+            className="bg-white w-full  overflow-hidden mx-auto "
+            style={{  height: `${height}px` }}
+          >
+            {/* Passing a slightly reduced width to NavBar */}
+            <NavBar key={"nav"} heightNav={heightNav}  />
+            {
+              NavBarHeight != 0 && (
+                <Main key={"main"} NavBarHeight={NavBarHeight} />
+              )
+            }
+          </div>
+        )}
+      </div>
+      )
+    }
+    {
+      true && (
+        <HomePage/>
+      )
+    }
+ 
+   
+    </>
   );
 }
