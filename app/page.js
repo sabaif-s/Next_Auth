@@ -3,6 +3,7 @@ import React, { useState, useEffect,useCallback } from "react";
 import dynamic from 'next/dynamic';
 import HomePage from "@/components/HomePage2/HomePage";
 import HomeMobileOne from "@/components/mobile/HomeOne/HomeMobileOne";
+import HomePageMobile from "@/components/HomePage2/HomePage2Mobile";
 const NavBar = dynamic(() => import('@/components/HomePage/NavBar/NavBar'), {
   ssr: false, // Disable SSR for this component
 });
@@ -91,7 +92,17 @@ export default function Home() {
         <HomePage/>
       )
     }
-    <HomeMobileOne/>
+     {
+      true && (
+        <HomePageMobile/>
+      )
+    }
+    {
+      false && (
+        <HomeMobileOne/>
+      )
+    }
+    
  
    
     </>

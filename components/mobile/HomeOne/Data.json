@@ -1,0 +1,59 @@
+{
+    "sections": [
+      {
+        "id": 1,
+        "title": "Weekly Blog Article",
+        "website": "www.websitename.com",
+        "newsletter": {
+          "name": "YOUR WEBSITE NAME",
+          "subtitle": "Email Newsletter"
+        },
+        "image": "/mobileHome/stretch4.jpg"
+      },
+      {
+        "id": 2,
+        "highlight": "How to Start Fitness Routine for a Beginner",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremqu Lorem ipsum, dolor sit amet consectetur adipisicing.",
+        "buttonText": "READ MORE"
+      },
+      {
+        "id": 3,
+        "title": "3 Stretching Tips to Do for Busy People",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, error quae aliquam temporibus explicabo obcaecati.",
+        "image": "/mobileHome/stretch3.jpg",
+        "buttonText": "READ MORE"
+      },
+      {
+        "id": 4,
+        "title": "Latest Most Viewed Fitness Tips",
+        "articles": [
+          {
+            "title": "Fitness Article 1",
+            "description": "Lorem ipsum dolor sit consectetur adipisicing elit. Aspernatur",
+            "image": "/mobileHome/stretch5.jpg"
+          },
+          {
+            "title": "Fitness Article 2",
+            "description": "Lorem ipsum dolor sit consectetur adipisicing elit. Aspernatur",
+            "image": "/mobileHome/stretch2.jpg"
+          },
+          {
+            "title": "Fitness Article 3",
+            "description": "Lorem ipsum dolor sit consectetur adipisicing elit. Aspernatur",
+            "image": "/mobileHome/stretch.jpg"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "websiteName": "YOUR WEBSITE NAME",
+        "youtube": "www.youryoutubename.com",
+        "socials": [
+          { "platform": "facebook", "icon": "/mobileHome/facebook.png" },
+          { "platform": "twitter", "icon": "/mobileHome/twitter.png" },
+          { "platform": "instagram", "icon": "/mobileHome/instagram.png" }
+        ]
+      }
+    ]
+  }
+  
