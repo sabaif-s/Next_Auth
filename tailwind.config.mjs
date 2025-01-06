@@ -11,6 +11,10 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      screens: {
+        'highWidth': { raw: '(min-aspect-ratio: 16/10)' }, // Portrait orientation
+        'highHeight': { raw: '(max-aspect-ratio: 4/3)' }, // Landscape orientation
+      },
     },
   },
   plugins: [],

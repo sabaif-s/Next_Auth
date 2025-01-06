@@ -96,7 +96,7 @@ const NavBar = React.memo(({heightNav}) => {
         </div>
       </div>
       <div
-        className="flex w-full xl:ml-16 pl-20 justify-start pr-4 xl:pr-0 text-gray-400 items-center gap-x-8 xl:gap-x-10 xl:pl-40 xl:pl-4"
+        className="flex w-full xl:ml-16 pl-12 justify-start pr-4 xl:pr-0 text-gray-400 items-center gap-x-8 xl:gap-x-8 xl:pl-32 "
         
       >
         {data.navbar.links.map((link) => (
