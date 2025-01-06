@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import HomePage from "@/components/HomePage2/HomePage";
 import HomeMobileOne from "@/components/mobile/HomeOne/HomeMobileOne";
 import HomePageMobile from "@/components/HomePage2/HomePage2Mobile";
+import HomeDesktopOne from "@/components/Desktop/HomePageDesktop";
 const NavBar = dynamic(() => import('@/components/HomePage/NavBar/NavBar'), {
   ssr: false, // Disable SSR for this component
 });
@@ -17,6 +18,7 @@ export default function Home() {
   const [dimensions, setDimensions] = useState({ width: null, height: null });
   const [smallScreen, setSmallScreen] = useState(false);
   const [NavBarHeight,setHeightNavBar]=useState(0)
+
 
   useEffect(() => {
     const calculateDimensions = () => {
@@ -68,7 +70,7 @@ export default function Home() {
     <>
     
     {
-      false && (
+      true && (
         <div key="top" className="w-full h-screen overflow-hidden bg-yellow-200 bg-opacity-60 xl:px-20 flex justify-center items-center">
         {width && height && (
           <div
@@ -88,18 +90,23 @@ export default function Home() {
       )
     }
     {
-      false && (
+      dimensions.width != null  && dimensions.width > 768 &&  (
         <HomePage/>
       )
     }
      {
-      true && (
+      dimensions.width != null  && dimensions.width <= 768 &&  (
         <HomePageMobile/>
       )
     }
     {
-      false && (
+      dimensions.width != null && dimensions.width <= 768 && (
         <HomeMobileOne/>
+      )
+    }
+     {
+      dimensions.width != null && dimensions.width > 768 && (
+        <HomeDesktopOne/>
       )
     }
     

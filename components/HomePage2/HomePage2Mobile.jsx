@@ -33,7 +33,7 @@ const closeNavBar=()=>{
     return (
         <motion.div
         ref={ref}
-            className="w-full h-screen bg-white p-4 relative"
+            className="w-full h-screen bg-white  relative"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             exit={{ opacity: 0 }}
@@ -42,7 +42,7 @@ const closeNavBar=()=>{
         <AnimatePresence>
         {
             navBarClicked && (
-                <div className='w-1/2 h-full absolute z-50 left-0' >
+                <div className='w-1/2 h-full  absolute z-50 left-0' >
                 <NavBarTwoMobile closeNavBar={closeNavBar} />
                 </div>
             )
@@ -50,7 +50,7 @@ const closeNavBar=()=>{
         </AnimatePresence>
             
             <AnimatePresence>
-                {true && (
+                {!navBarClicked && (
                     <CheckTemplateButton key="check-template-button" linkTemplate={data.templateFirst} />
                 )}
             </AnimatePresence>
@@ -73,13 +73,7 @@ const closeNavBar=()=>{
                      <img 
                      onClick={clickedNavBar}
                      src="/mobileNavbar/collapse.png" className='w-12 h-12 rotate-180' alt="" />
-                     {/* <div className='flex flex-col gap-y-2 bg-black bg-opacity-40'>
-                        <span className="text-white text-lg">{data.agencyName}</span>
-                        <span className="text-yellow-600 text-lg">{data.mainHeadline}</span>
-                        <div className=' ' >
-                        <span className="text-blue-800 font-bold text-lg">{data.secondaryHeadline}</span>
-                        </div>
-                    </div> */}
+                    
                     <div className='flex gap-x-4'>
                         {data.socialMedia.map((social, index) => (
                             <Image
@@ -98,16 +92,27 @@ const closeNavBar=()=>{
 
                 <motion.div
                  style={backStyle}
-                    className="w-full h-2/3 flex flex-col justify-center items-center relative"
+                    className="w-full h-2/3 sm:px-20 py-8 flex flex-col justify-center sm:justify-end items-center relative"
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                     transition={{ duration: 1 }}
                 >
                     <div className="rounded-full absolute top-4 " style={{ border: "1px solid #f5f5f5", width: "160px", height: "160px" }}>
                     </div>
-                    <div className="w-full h-full flex flex-col justify-start gap-y-2 items-center">
-                    
-                        
+                    <motion.div
+    className='flex w-full flex-col items-center justify-center absolute top-0 gap-y-2 bg-black bg-opacity-40'
+    initial={{ opacity: 0, y: -50 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -50 }}
+    transition={{ duration: 0.5,delay:2 }}
+>
+    <span className="text-white text-3xl">{data.agencyName}</span>
+    <span className="text-yellow-600 text-3xl">{data.mainHeadline}</span>
+    <div>
+        <span className="text-yellow-600 font-bold text-3xl">{data.secondaryHeadline}</span>
+    </div>
+</motion.div>
+                    <div className="w-full flex flex-col justify-start gap-y-2 items-center">
                       
                         <div className='bg-black bg-opacity-40' >
                         <span className="text-gray-100 text-lg font-bold px-2 mt-2">{data.description}</span>
@@ -115,7 +120,7 @@ const closeNavBar=()=>{
                         
                         <div className='w-1/2 py-4 cursor-pointer z-40 shadow-inner shadow-yellow-200 border-2 border-yellow-300 mt-4 flex justify-center items-center'>
                             <span className='text-white text-lg'>{data.buttonText}</span>
-                            <img src="/homePage2/right arrow.png" className='w-8 h-6 ml-2' alt="" />
+                            <img src="/homePage2/right arrow.png" className='w-12 h-12 ml-2' alt="" />
                         </div>
                     </div>
                 </motion.div>

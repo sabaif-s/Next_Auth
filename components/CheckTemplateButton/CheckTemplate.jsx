@@ -16,9 +16,11 @@ const CheckTemplateButton = ({linkTemplate}) => {
             transition={{ duration: 0.5 , delay:0.5 }}
             style={{
                 position: 'absolute',
-                top: '10px',
-                left: '50%',
-                transform: 'translateX(-50%)',
+                 top: '10px',
+                 display:"flex",
+                 flexDirection:"row",
+                 justifyContent:"center",
+                 width:"100%",
                 zIndex: 1000
             }}
         >
