@@ -2,6 +2,7 @@
 import React, { useState, useEffect,useCallback } from "react";
 import dynamic from 'next/dynamic';
 import HomePage from "@/components/HomePage2/HomePage";
+import HomeMobileOne from "@/components/mobile/HomeOne/HomeMobileOne";
 const NavBar = dynamic(() => import('@/components/HomePage/NavBar/NavBar'), {
   ssr: false, // Disable SSR for this component
 });
@@ -66,7 +67,7 @@ export default function Home() {
     <>
     
     {
-      true && (
+      false && (
         <div key="top" className="w-full h-screen overflow-hidden bg-yellow-200 bg-opacity-60 xl:px-20 flex justify-center items-center">
         {width && height && (
           <div
@@ -86,10 +87,11 @@ export default function Home() {
       )
     }
     {
-      true && (
+      false && (
         <HomePage/>
       )
     }
+    <HomeMobileOne/>
  
    
     </>
