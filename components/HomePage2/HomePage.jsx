@@ -18,7 +18,7 @@ const HomePage = () => {
     return (
         <motion.div
        
-            className="w-full h-screen bg-white highHeight:px-8 highHeight:py-24 highWidth:p-20  relative"
+            className="w-full h-screen mt-40  bg-white highHeight:px-8 highHeight:py-24 highWidth:p-20  relative"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             exit={{ opacity: 0 }}

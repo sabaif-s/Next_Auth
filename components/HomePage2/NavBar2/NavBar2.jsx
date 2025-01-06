@@ -2,7 +2,7 @@ import React from 'react';
 
 const  NavBarTwo = () => {
     return (
-        <div className='w-11/12 flex justify-center items-end h-full ' >
+        <div className='w-11/12 flex justify-center items-end h-full overflow-hidden ' >
         <div className='xl:w-1/2 w-1/3 h-1/2  flex justify-around items-start' >
                <div>
                 <span className='text-white hover:text-green-400 cursor-pointer xl:text-xl' >

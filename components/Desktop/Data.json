@@ -4,6 +4,7 @@
         "id": 1,
         "title": "Weekly Blog Article",
         "website": "www.websitename.com",
+        "templateFirst":"https://www.freepik.com/free-vector/flat-design-newsletter-template_67171889.htm#fromView=search&page=1&position=1&uuid=1560cd7e-38f6-450f-9850-8a843db625ad&new_detail=true",
         "newsletter": {
           "name": "YOUR WEBSITE NAME",
           "subtitle": "Email Newsletter"

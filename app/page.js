@@ -74,7 +74,7 @@ export default function Home() {
         <div key="top" className="w-full h-screen overflow-hidden bg-yellow-200 bg-opacity-60 xl:px-20 flex justify-center items-center">
         {width && height && (
           <div
-            className="bg-white w-full  overflow-hidden mx-auto "
+            className="bg-white w-full   mx-auto "
             style={{  height: `${height}px` }}
           >
             {/* Passing a slightly reduced width to NavBar */}

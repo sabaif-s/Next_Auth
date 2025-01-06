@@ -33,7 +33,7 @@ const closeNavBar=()=>{
     return (
         <motion.div
         ref={ref}
-            className="w-full h-screen bg-white  relative"
+            className="w-full h-screen bg-white mt-40 relative"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             exit={{ opacity: 0 }}

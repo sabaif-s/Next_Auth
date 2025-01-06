@@ -2,6 +2,8 @@ import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
 import data from './Data.json';
+import CheckTemplateButton from '@/components/CheckTemplateButton/CheckTemplate';
+import { AnimatePresence } from 'framer-motion';
 
 const HomeMobileOne = () => {
     const section1Ref = useRef(null);
@@ -17,7 +19,12 @@ const HomeMobileOne = () => {
     const isInView5 = useInView(section5Ref, { once: false });
 
     return (
-        <div className='w-full relative  flex flex-col justify-center items-center pb-4'>
+        <div className='w-full relative  flex flex-col justify-center items-center pb-4 mt-40'>
+            <AnimatePresence>
+                {true && (
+                    <CheckTemplateButton   key="check-template-button" linkTemplate={data.sections[0].templateFirst} />
+                )}
+            </AnimatePresence>
             <motion.div
                 ref={section1Ref}
                 className='w-full h-full flex flex-col justify-center items-center bg-red-400'
