@@ -71,7 +71,7 @@ export default function Home() {
     <>
     
     {
-      false && (
+      dimensions.width != null && dimensions.width > 768 &&  (
         <div key="top" className="w-full h-screen overflow-hidden bg-yellow-200 bg-opacity-60 xl:px-20 flex justify-center items-center">
         {width && height && (
           <div
@@ -91,30 +91,31 @@ export default function Home() {
       )
     }
     {
-      dimensions.width != null  && dimensions.width > 768 && false && (
+      dimensions.width != null && dimensions.width <= 768 && (
+        <LandingPage key="Landing Page" />
+      )
+    }
+    {
+      dimensions.width != null  && dimensions.width > 768 && true && (
         <HomePage/>
       )
     }
      {
-      dimensions.width != null  && dimensions.width <= 768 && false &&  (
+      dimensions.width != null  && dimensions.width <= 768 && true &&  (
         <HomePageMobile/>
       )
     }
     {
-      dimensions.width != null && dimensions.width <= 768 && false && (
+      dimensions.width != null && dimensions.width <= 768 && true && (
         <HomeMobileOne/>
       )
     }
      {
-      dimensions.width != null && dimensions.width > 768 && false && (
+      dimensions.width != null && dimensions.width > 768 && true && (
         <HomeDesktopOne/>
       )
     }
-    {
-      true && (
-        <LandingPage key="Landing Page" />
-      )
-    }
+    
     
  
    

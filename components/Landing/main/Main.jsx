@@ -14,6 +14,9 @@ const Main= ({NavBarHeight}) => {
     const [smallContent,setSmallContent]=useState(null);
     const [slideDownLeft,setSlideDownLeft]=useState(false);
     const [slideUpSmall,setSlideUpSmall]=useState(false);
+    const [animateEmail,setAnimateEmail]=useState(false);
+    const [animateCv,setAnimateCv]=useState(false);
+    const [fadeInPicture,setFadeInPicture]=useState(false);
     const typingVariants = {
         hidden: { opacity: 0 },
         visible: (i) => ({
@@ -41,18 +44,33 @@ const Main= ({NavBarHeight}) => {
      useEffect(()=>{
         if(!slideDownLeft){
             setTimeout(() => {
+                setFadeInPicture(true);
+            },  6500);
+            
+            setTimeout(() => {
                 setSlideDownLeft(true);
                 setTimeout(() => {
                     setSlideUpSmall(true);
-                },  3500);
+                },  1000);
               
                 setTimeout(()=>{
-                             setSlideDownLeft(false);
-                },11500); 
-            },  3500);
+                      setAnimateEmail(true);
+                              
+                },9500); 
+            },  8500);
         }
                 
      },[slideDownLeft]);
+     
+     useEffect(()=>{
+           if(animateEmail){
+            setTimeout(() => {
+                 setSlideDownLeft(false);
+                 setAnimateEmail(false);
+                 setFadeInPicture(false);
+            },  9000);
+           }
+     },[animateEmail]);
      useEffect(()=>{
          if(data?.leftData?.smallContent){
             console.log("Data:", data.leftData.smallContent);
@@ -71,11 +89,17 @@ const Main= ({NavBarHeight}) => {
                 ref={containerRef}
                  style={{ paddingLeft:"12px"}}
                 className='w-full flex flex-row  bg-opacity-10 absolute top-32'>
+                    <div className='w-20 sm:h-full h-0 absolute left-0 z-50 bg-white' >
+
+                    </div>
+                    <div className='w-20 sm:h-full h-0 absolute right-0 z-50 bg-white' >
+
+                    </div>
                      {
                     leftWidth && rightWidth && (
                         <>
                         <motion.div
-  className="flex relative z-20 flex-col w-full bg-opacity-40 py-20 "
+  className="flex relative z-20 flex-col gap-y-4 w-full bg-opacity-40 py-20 "
   initial={{ opacity: 1, y: 0 }}
   animate={slideDownLeft ? { x: 600, opacity: 1 } : { x: 0, y: 0, opacity: 1 }}
   transition={{ duration: 3.5 }}
@@ -113,7 +137,8 @@ const Main= ({NavBarHeight}) => {
                     </div>
                 </motion.div>
                          </div>
-                         <div className='pt-2 flex flex-row pl-2 w-full pr-10 '>
+                        
+                         <div className='pt-2 sm:px-20 flex flex-row pl-2 w-full '>
                          <motion.span
       className="text-black font-semibold w-full word-break font-serif"
       initial={{ opacity: 0, y: -100 }}
@@ -134,12 +159,12 @@ const Main= ({NavBarHeight}) => {
       ))}
     </motion.span>
         </div>
-        <div className='mt-10'>
+        <div className='mt-8 absolute bottom-0 sm:px-20'>
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={ slideUpSmall ? {opacity:1, x:-600}:{ opacity: 0 }}
                 transition={{ duration: 2 }}
-                className='pr-4 bg-gradient-to-r from-gray-100 via-gray-100 to-white rounded-md xxl:p-2 bg-opacity-20'
+                className='p-4 bg-gradient-to-r leading-relaxed from-gray-100 via-gray-100 to-white rounded-md xxl:p-2 bg-opacity-20'
             >
                  
                          
@@ -152,26 +177,41 @@ const Main= ({NavBarHeight}) => {
                
             </motion.div>
         </div>
-        <div className='flex flex-col 2xl:mt-10 xl:mt-4 gap-y-4'>
-            <div className='mb-4 flex flex-row justify-start items-center'>
-                <motion.button
-                style={{paddingTop:"6px",paddingBottom:"6px"}}
-                    className='px-10 rounded-full bg-green-600 text-white  hover:bg-green-700'
-                    initial={{ opacity: 0, x: 100 , y:100, rotate:-45 }}
-                    animate={{ opacity: 1, x: 0 , y:0, rotate: 0}}
-                    transition={{ duration: 2.5 }}
-                >
-                    Read More
-                </motion.button>
+        <div className='flex flex-col sm:px-20 2xl:mt-10 xl:mt-4 gap-y-4'>
+            <div className='mb-4 flex relative flex-row justify-start items-center'>
+            <a href="https://sabaif.netlify.app/" target="_blank" rel="noopener noreferrer">
+    <motion.button
+        style={{ paddingTop: "6px", paddingBottom: "6px" }}
+        className='px-10 rounded-full absolute z-0  bg-green-600 text-white hover:bg-green-700 flex items-center gap-2'
+        initial={{ opacity: 0, x: -200, y: -100 }}
+        animate={animateEmail ? { opacity: 1, x: -580, y: -260 } : { opacity: 0, x: 0, y: 0 }}
+        transition={{ duration: 2.5 }}
+    >
+        <img src="/mainHome/website.png" alt="Icon" className='w-6 h-6' />
+        <span>sabaif.netlify</span>
+    </motion.button>
+</a>
+<a href="https://sabaif.netlify.app/" target="_blank" rel="noopener noreferrer">
+    <motion.button
+        style={{ paddingTop: "6px", paddingBottom: "6px" }}
+        className='px-10 rounded-full relative z-20 bg-green-600 text-white hover:bg-green-700 flex items-center gap-2'
+        initial={{ opacity: 0, x: 100, y: 100, rotate: -45 }}
+        animate={{ opacity: 1, x: 0, y: 0, rotate: 0 }}
+        transition={{ duration: 2.5 }}
+    >
+        <img src="/mainHome/website.png" alt="Icon" className='w-6 h-6' />
+        <span>sabaif.netlify</span>
+    </motion.button>
+</a>
                 <motion.div
-                    className='gap-x-4  rounded flex flex-row items-center justify-start ml-10'
+                    className='gap-x-2  rounded flex flex-row items-center justify-start ml-6 bg-black'
                     initial={{ opacity: 0, x: -20 , y:50, rotate:45 }}
                     animate={{ opacity: 1, x: 0 , y:0, rotate: 0}}
                     transition={{ duration: 1.5 }}
                 >
-                    <Image src={"/mainHome/meta.png"} alt="Meta" width={40} height={40} className='object-cover' />
+                    <Image src={"/mainHome/meta.png"} alt="Meta" width={32} height={32} className='object-cover' />
                      
-                    <span className='text-sm tracking-wider text-gray-500 font-normal'> +251701479847</span>
+                    <span className='text-lg tracking-wider text-white font-normal'> +251701479847</span>
                 </motion.div>
             </div>
             <div className='mb-4 flex flex-row justify-end w-full items-center pr-6'>
@@ -180,32 +220,53 @@ const Main= ({NavBarHeight}) => {
                  </div>
             </div>
             <div className='flex relative '>
-                <motion.button
-                style={{paddingTop:"6px",paddingBottom:"6px"}}
-                    className='px-10  rounded-full bg-black  text-white hover:bg-green-700 relative z-50'
-                    initial={{ opacity: 0, x: -200, y:20 }}
-                    animate={{ opacity: 1, x: 0,y:0 }}
-                    transition={{ duration: 1.5 }}
-                >
-                   <span className='text-white font-bold' >Find a Psychologist</span> 
-                </motion.button>
+            <a href="https://github.com/your-github-username" target="_blank" rel="noopener noreferrer">
+    <motion.button
+        style={{ paddingTop: "6px", paddingBottom: "6px" }}
+        className='px-10 rounded-full bg-blue-600 text-white hover:bg-green-700 relative z-50 flex items-center gap-2'
+        initial={{ opacity: 0, x: -200, y: 20 }}
+        animate={{ opacity: 1, x: 0, y: 0 }}
+        transition={{ duration: 1.5 }}
+    >
+        <img src="/mainHome/github2.png" alt="GitHub" className='w-6 h-6' />
+        <span className='text-white font-bold'>sabaif-s</span>
+    </motion.button>
+</a>
                 <div className='flex flex-row justify-start items-center absolute left-48' >
         
-               
-                <motion.button
-                style={{paddingTop:"6px",paddingBottom:"6px"}}
-                    className='px-10  rounded-full bg-white  text-white hover:bg-gray-200 '
-                    initial={{ opacity: 0, x: -200 ,y:-100 }}
-                    animate={{ opacity: 1, x: 0 , y:0}}
-                    transition={{ duration: 2.5 }}
-                >
-                    <span className='text-gray-400' >
-                    City Or Postcode...
-                    </span>
-                    
-                </motion.button>
+                 <div className='relative' >
+
+                 <a href="mailto:sebaifmuhammed33@gmail.com">
+    <motion.button
+        style={{ paddingTop: "6px", paddingBottom: "6px" }}
+        className='px-10 rounded-full absolute z-0 sm:hidden bg-white text-white hover:bg-gray-200 flex items-center gap-2'
+        initial={{ opacity: 0, x: -200, y: -100 }}
+        animate={animateEmail ? { opacity: 1, x: -800, y: -400 } : { opacity: 0, x: 0, y: 0 }}
+        transition={{ duration: 2.5 }}
+    >
+        <img src="/mainHome/email.png" alt="Icon" className='w-6 h-6' />
+        <span className='text-gray-400'>
+             sebaifmuhammed33@gmail.com
+        </span>
+    </motion.button>
+</a>
+<a href="mailto:sebaifmuhammed33@gmail.com">
+    <motion.button
+        style={{ paddingTop: "6px", paddingBottom: "6px" }}
+        className='px-10 rounded-full bg-blue-400 text-white hover:bg-gray-200 flex items-center gap-2'
+        initial={{ opacity: 0, x: -200, y: -100 }}
+        animate={{ opacity:1,x:0,y:0 }}
+        transition={{ duration: 2.5 }}
+    >
+        <img src="/mainHome/email.png" alt="Icon" className='w-6 h-6' />
+        <span className='text-green-400 font-bold'>
+             Email Me.
+        </span>
+    </motion.button>
+</a>
+                </div>
                  
-                <motion.div
+                {/* <motion.div
     className='w-10 h-10 object-cover'
     initial={{ opacity: 0, scale: 0.5, rotate: -45 }}
     animate={{ opacity: 1, scale: 1, rotate: 0 }}
@@ -220,7 +281,7 @@ const Main= ({NavBarHeight}) => {
         height={40}
         className='object-cover'
     />
-</motion.div>
+</motion.div> */}
                  
                
                 </div>
@@ -279,8 +340,8 @@ const Main= ({NavBarHeight}) => {
                        
                         </motion.div>
                         {
-                            true && (
-                                <div className=" w-full absolute top-32 z-0 z-40">
+                            fadeInPicture && (
+                                <div className=" w-full sm:px-20 absolute top-32 z-0">
                                 <MainRight key="main" />
                                </div>
                             )

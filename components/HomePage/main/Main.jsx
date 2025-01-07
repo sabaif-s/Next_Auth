@@ -57,7 +57,7 @@ const Main= ({NavBarHeight}) => {
                      {
                     leftWidth && rightWidth && (
                         <>
-                         <div style={{width:`${leftWidth}px`}} className=" flex flex-col  bg-opacity-40 py-20">
+                         <div style={{width:`${leftWidth}px`}} className=" flex flex-col  bg-opacity-40 xl:py-20">
                          <div className='w-full h-6 flex justify-between items-center pr-12' >
                          <motion.div
             style={{ height: "4px" }}
@@ -98,14 +98,14 @@ const Main= ({NavBarHeight}) => {
             >
                 {text.split("").map((char, index) => (
                     <motion.span
-                     className='text-4xl tracking-wider leading-20'
+                     className='xl:text-4xl text-2xl tracking-wider leading-20'
                     key={index} custom={index} variants={typingVariants}>
                         {char}
                     </motion.span>
                 ))}
             </motion.span>
         </div>
-        <div className='mt-10'>
+        <div className='xl:mt-10 mt-4'>
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -123,7 +123,7 @@ const Main= ({NavBarHeight}) => {
                
             </motion.div>
         </div>
-        <div className='flex flex-col 2xl:mt-10 xl:mt-4 gap-y-4'>
+        <div className='flex flex-col  2xl:mt-10 xl:mt-4 xl:gap-y-4'>
             <div className='mb-4 flex flex-row justify-start items-center'>
                 <motion.button
                 style={{paddingTop:"6px",paddingBottom:"6px"}}
@@ -198,7 +198,7 @@ const Main= ({NavBarHeight}) => {
             </div>
             <motion.div
                     ref={ref}
-                    className='flex flex-row mt-4 pt-8 justify-start items-center relative'
+                    className='flex flex-row xl:mt-4 mt-2 xl:pt-8 justify-start items-center relative'
                     initial={{ opacity: 0, y: 100 , x:-100, rotate:-45}}
                     animate={isInView ? { opacity: 1, x:0, y: 0 , rotate:0} : {}}
                     transition={{ duration: 1.5 }}
