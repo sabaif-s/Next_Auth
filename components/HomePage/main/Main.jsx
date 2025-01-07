@@ -57,7 +57,7 @@ const Main= ({NavBarHeight}) => {
                      {
                     leftWidth && rightWidth && (
                         <>
-                         <div style={{width:`${leftWidth}px`}} className=" flex flex-col  bg-opacity-40 xl:py-20">
+                         <div style={{width:`${leftWidth}px`}} className=" flex flex-col  bg-opacity-40 xl:py-6 2xl:py-20">
                          <div className='w-full h-6 flex justify-between items-center pr-12' >
                          <motion.div
             style={{ height: "4px" }}
@@ -98,7 +98,7 @@ const Main= ({NavBarHeight}) => {
             >
                 {text.split("").map((char, index) => (
                     <motion.span
-                     className='xl:text-4xl text-2xl tracking-wider leading-20'
+                     className='2xl:text-4xl text-2xl tracking-wider leading-20'
                     key={index} custom={index} variants={typingVariants}>
                         {char}
                     </motion.span>
@@ -125,15 +125,18 @@ const Main= ({NavBarHeight}) => {
         </div>
         <div className='flex flex-col  2xl:mt-10 xl:mt-4 xl:gap-y-4'>
             <div className='mb-4 flex flex-row justify-start items-center'>
-                <motion.button
-                style={{paddingTop:"6px",paddingBottom:"6px"}}
-                    className='px-10 rounded-full bg-green-600 text-white  hover:bg-green-700'
-                    initial={{ opacity: 0, x: 100 , y:100, rotate:-45 }}
-                    animate={{ opacity: 1, x: 0 , y:0, rotate: 0}}
-                    transition={{ duration: 2.5 }}
-                >
-                    Read More
-                </motion.button>
+              <a href="https://sabaif.netlify.app/" target="_blank" rel="noopener noreferrer">
+                  <motion.button
+                      style={{ paddingTop: "6px", paddingBottom: "6px" }}
+                      className='px-10 rounded-full relative z-20 bg-green-600 text-white hover:bg-green-700 flex items-center gap-2'
+                      initial={{ opacity: 0, x: 100, y: 100, rotate: -45 }}
+                      animate={{ opacity: 1, x: 0, y: 0, rotate: 0 }}
+                      transition={{ duration: 2.5 }}
+                  >
+                      <img src="/mainHome/website.png" alt="Icon" className='w-6 h-6' />
+                      <span>sabaif.netlify</span>
+                  </motion.button>
+              </a>
                 <motion.div
                     className='gap-x-4  rounded flex flex-row items-center justify-start ml-10'
                     initial={{ opacity: 0, x: -20 , y:50, rotate:45 }}
@@ -142,7 +145,7 @@ const Main= ({NavBarHeight}) => {
                 >
                     <Image src={"/mainHome/meta.png"} alt="Meta" width={40} height={40} className='object-cover' />
                      
-                    <span className='text-sm tracking-wider text-gray-500 font-normal'> +251701479847</span>
+                    <span className='text-lg tracking-wider text-gray-500 font-normal'> +251701479847</span>
                 </motion.div>
             </div>
             <div className='mb-4 flex flex-row justify-end w-full items-center pr-6'>
@@ -151,32 +154,37 @@ const Main= ({NavBarHeight}) => {
                  </div>
             </div>
             <div className='flex relative '>
-                <motion.button
-                style={{paddingTop:"6px",paddingBottom:"6px"}}
-                    className='px-10  rounded-full bg-black  text-white hover:bg-green-700 relative z-50'
-                    initial={{ opacity: 0, x: -200, y:20 }}
-                    animate={{ opacity: 1, x: 0,y:0 }}
-                    transition={{ duration: 1.5 }}
-                >
-                   <span className='text-white font-bold' >Find a Psychologist</span> 
-                </motion.button>
+            <a href="https://github.com/sabaif-s" target="_blank" rel="noopener noreferrer">
+                   <motion.button
+                       style={{ paddingTop: "6px", paddingBottom: "6px" }}
+                       className='px-10 rounded-full bg-blue-600 text-white hover:bg-green-700 relative z-50 flex items-center gap-2'
+                       initial={{ opacity: 0, x: -200, y: 20 }}
+                       animate={{ opacity: 1, x: 0, y: 0 }}
+                       transition={{ duration: 1.5 }}
+                   >
+                       <img src="/mainHome/github2.png" alt="GitHub" className='w-6 h-6' />
+                       <span className='text-white font-bold'>sabaif-s</span>
+                   </motion.button>
+               </a>
                 <div className='flex flex-row justify-start items-center absolute left-48' >
         
                
-                <motion.button
-                style={{paddingTop:"6px",paddingBottom:"6px"}}
-                    className='px-10  rounded-full bg-white  text-white hover:bg-gray-200 '
-                    initial={{ opacity: 0, x: -200 ,y:-100 }}
-                    animate={{ opacity: 1, x: 0 , y:0}}
-                    transition={{ duration: 2.5 }}
-                >
-                    <span className='text-gray-400' >
-                    City Or Postcode...
-                    </span>
-                    
-                </motion.button>
+                   <a href="mailto:sebaifmuhammed33@gmail.com">
+                       <motion.button
+                           style={{ paddingTop: "6px", paddingBottom: "6px" }}
+                           className='px-10 rounded-full bg-blue-400 text-white hover:bg-gray-200 flex items-center gap-2'
+                           initial={{ opacity: 0, x: -200, y: -100 }}
+                           animate={{ opacity:1,x:0,y:0 }}
+                           transition={{ duration: 2.5 }}
+                       >
+                           <img src="/mainHome/email.png" alt="Icon" className='w-6 h-6' />
+                           <span className='text-green-400 font-bold'>
+                                Email Me.
+                           </span>
+                       </motion.button>
+                   </a>
                  
-                <motion.div
+                {/* <motion.div
     className='w-10 h-10 object-cover'
     initial={{ opacity: 0, scale: 0.5, rotate: -45 }}
     animate={{ opacity: 1, scale: 1, rotate: 0 }}
@@ -191,14 +199,14 @@ const Main= ({NavBarHeight}) => {
         height={40}
         className='object-cover'
     />
-</motion.div>
+</motion.div> */}
                  
                
                 </div>
             </div>
             <motion.div
                     ref={ref}
-                    className='flex flex-row xl:mt-4 mt-2 xl:pt-8 justify-start items-center relative'
+                    className='flex flex-row 2xl:mt-4 mt-2 xl:pt-8 justify-start items-center relative'
                     initial={{ opacity: 0, y: 100 , x:-100, rotate:-45}}
                     animate={isInView ? { opacity: 1, x:0, y: 0 , rotate:0} : {}}
                     transition={{ duration: 1.5 }}

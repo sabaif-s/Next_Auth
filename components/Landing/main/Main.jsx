@@ -220,7 +220,7 @@ const Main= ({NavBarHeight}) => {
                  </div>
             </div>
             <div className='flex relative '>
-            <a href="https://github.com/your-github-username" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/sabaif-s" target="_blank" rel="noopener noreferrer">
     <motion.button
         style={{ paddingTop: "6px", paddingBottom: "6px" }}
         className='px-10 rounded-full bg-blue-600 text-white hover:bg-green-700 relative z-50 flex items-center gap-2'
