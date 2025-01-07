@@ -64,7 +64,7 @@ const NavBar = React.memo(({heightNav}) => {
     <nav 
     ref={navRef}
       // style={{ width: `${width}px` }}
-    className={"flex flex-col justify-between w-full items-start py-4 pl-0 xl:pl-0  xl:ml-8  border-2 border-gray-100 shadow-md shadow-gray-200 bg-gradient-to-r from-white via-gray-100 to-white"}>
+    className={"flex flex-col absolute justify-between w-full items-start py-4 pl-0 xl:pl-0  xl:ml-8  border-2 border-gray-100 shadow-md shadow-gray-200 bg-gradient-to-r from-white via-gray-100 to-white"}>
       
       <div className="flex justify-start relative z-50">
         <motion.canvas
@@ -102,7 +102,7 @@ const NavBar = React.memo(({heightNav}) => {
           <span className="text-black text-2xl mb-2">{data.navbar.logo.title}</span>
           <span className="text-gray-400">{data.navbar.logo.subtitle}</span>
         </div>
-        <div className="w-full fixed top-4 right-2 flex justify-end items-center h-24">
+        <div className="w-full fixed z-50 top-4 right-2 flex justify-end items-center h-24">
             <motion.img
                 src={isOpen ? "/LandingNavBar/collapse.png" : "/LandingNavBar/collapse.png"}
                 className="w-12 h-12 object-cover cursor-pointer"

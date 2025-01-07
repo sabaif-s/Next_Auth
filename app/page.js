@@ -71,7 +71,7 @@ export default function Home() {
     <>
     
     {
-      true && (
+      false && (
         <div key="top" className="w-full h-screen overflow-hidden bg-yellow-200 bg-opacity-60 xl:px-20 flex justify-center items-center">
         {width && height && (
           <div

@@ -1,0 +1,23 @@
+{
+    "images":[
+        {
+            "mainImage":{
+                "src":"/mainHome/saboo11.png",
+                "alt":"Main Image"
+
+            },
+            "imageKey":{
+                "src":"/mainHome/key.png",
+                "alt":"Key Image"
+            }
+        }
+    ],
+    "leftData":{
+        "content":"Figma to Code: Transforming Designs into Responsive Websites",
+        "smallContent":"Effortlessly convert your Figma designs into fully functional, responsive websites with our expert Figma-to-UI conversion services. From pixel-perfect implementation to optimized performance, we turn your creative visions into reality using clean, maintainable code. Perfect for developers, designers, and businesses seeking a seamless transition from design to deployment.",
+        "firstButton":"Read More",
+        "secondButton":"Find a Psychologist",
+        "phoneNumber":"+251701479847",
+        "placeholder":"City or Postcode.."
+    }
+}
