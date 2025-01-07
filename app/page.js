@@ -5,6 +5,7 @@ import HomePage from "@/components/HomePage2/HomePage";
 import HomeMobileOne from "@/components/mobile/HomeOne/HomeMobileOne";
 import HomePageMobile from "@/components/HomePage2/HomePage2Mobile";
 import HomeDesktopOne from "@/components/Desktop/HomePageDesktop";
+import LandingPage from "@/components/Landing/LandingPage";
 const NavBar = dynamic(() => import('@/components/HomePage/NavBar/NavBar'), {
   ssr: false, // Disable SSR for this component
 });
@@ -90,23 +91,28 @@ export default function Home() {
       )
     }
     {
-      dimensions.width != null  && dimensions.width > 768 &&  (
+      dimensions.width != null  && dimensions.width > 768 && false && (
         <HomePage/>
       )
     }
      {
-      dimensions.width != null  && dimensions.width <= 768 &&  (
+      dimensions.width != null  && dimensions.width <= 768 && false &&  (
         <HomePageMobile/>
       )
     }
     {
-      dimensions.width != null && dimensions.width <= 768 && (
+      dimensions.width != null && dimensions.width <= 768 && false && (
         <HomeMobileOne/>
       )
     }
      {
-      dimensions.width != null && dimensions.width > 768 && (
+      dimensions.width != null && dimensions.width > 768 && false && (
         <HomeDesktopOne/>
+      )
+    }
+    {
+      true && (
+        <LandingPage key="Landing Page" />
       )
     }
     
