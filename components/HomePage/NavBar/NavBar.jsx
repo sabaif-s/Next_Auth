@@ -103,6 +103,7 @@ const NavBar = React.memo(({heightNav}) => {
           <motion.a
             key={link.label}
             onClick={() => setClickedAnchor(link.href)}
+            target="_blank"
             href={link.href}
             className={`hover:text-green-400 transition-colors duration-300 ${
               clickedAnchor === link.href ? "text-green-400" : ""
@@ -115,6 +116,9 @@ const NavBar = React.memo(({heightNav}) => {
             <span>{link.label}</span>
           </motion.a>
         ))}
+        <a href="mailto:sebaifmuhammed33@gmail.com">
+
+        
       <motion.button
     className="bg-gradient-to-r hover:bg-gradient-to-l  from-sky-400 via-sky-300 to-red-400 text-white font-bold py-2 px-4 rounded-full shadow-lg"
     style={{ borderRadius: "20px" }}
@@ -132,6 +136,7 @@ const NavBar = React.memo(({heightNav}) => {
 >
     {data.navbar.button.text}
 </motion.button>
+</a>
       </div>
     </nav>
   );

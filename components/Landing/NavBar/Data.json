@@ -1,19 +1,19 @@
 {
     "navbar": {
       "logo": {
-        "title": "Mindful",
-        "subtitle": "Psychological Therapy"
+        "title": "Sebaif M",
+        "subtitle": "Figma To Code."
       },
       "navbarStyle": "flex justify-between w-full items-center py-4 pl-4 xl:pl-0  xl:ml-8  border-2 border-gray-100 shadow-md shadow-gray-200 bg-gradient-to-r from-blue-300 via-gray-100 to-blue-100",
       "links": [
-        { "label": "Home", "href": "#home" },
-        { "label": "About", "href": "#about" },
-        { "label": "Services", "href": "#services" },
-        { "label": "Portfolio", "href": "#portfolio" },
-        { "label": "Contact", "href": "#contact" }
+        { "label": "Email", "href": "mailto:sebaifmuhammed33@gmail.com" },
+        { "label": "LinkedIn", "href": "https://www.linkedin.com/in/sebaif-muhammed-16a402294/" },
+        { "label": "Github", "href": "https://github.com/sabaif-s" },
+        { "label": "Portfolio", "href": "https://sabaif.netlify.app/" },
+        { "label": "Phone", "href": "tel:0701479847" }
       ],
       "button": {
-        "text": "Contact Us",
+        "text": "Contact Me",
         "style": "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
       },
 
